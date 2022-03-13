@@ -1,0 +1,60 @@
+{% extends 'base4.html' %}
+{% block content %}
+
+
+
+
+
+<!-- ======= Pricing Section ======= -->
+ <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/this-is-same-shoes.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>View Orders</h2>
+          <p>View the orders that are been rejected,delivered or if you need to cancel</p>
+        </div>
+
+ <div class="row">
+    	{% for v in data %}
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100" style="margin:0 auto">
+            <div class="box">
+		
+              <h3>Address:{{v.shippingaddress}}</h3>
+              <h4>Quantity:{{v.quantity}}</h4>
+              <h5>Total Price:{{v.totalprice}}</h5>
+		<h6>{{v.date}}</h6>
+		<h6>{{v.time}}</h6>
+		<h6>Status:{{v.status}}</h6>
+		<h6>{{v.productid.productname}}</h6>
+		<h6>{{v.sellerid.name}}</h6>
+		
+		{% if v.status == 'pending' %}			
+		<div class="btn-wrap">
+                	<a href="{% url 'cancel' v.id %}" class="btn-buy">Cancel</a>
+		{% endif %}
+		{% if v.status == 'Accepted' %}
+			<a href="{% url 'trackorder1' v.id %}" class="btn-buy">Track Order</a>
+		{% endif %}
+              </div>
+            </div>
+	{% endfor %}
+          </div>
+		
+</div>
+
+</div>
+	
+          
+        
+
+     
+
+
+
+
+		
+	
+{% endblock %}
+
+				

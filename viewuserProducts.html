@@ -1,0 +1,106 @@
+{% extends 'base4.html' %}
+{% block content %}
+
+<script src="/static/jquery-1.8.3.min.js"></script>
+<script>
+	$(document).ready(function(){
+					$(".pricing h3").hide()
+				     })
+</script>
+
+
+
+<!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/friends-shopping.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Products</h2>
+          
+        </div>
+
+
+	
+        <div class="row">
+{% for v in data %}
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+		<h2><img src="{{v.file.url}}" height="150px" width="150px" alt="no pic"></h2>
+              <ul>{{v.productname}}</ul>
+              
+              <ul>
+                <li>Rupees{{v.price}}</li>
+                <div style="margin-top:-6px"><li>stock:{{v.stock}}</li></div>
+		<li>{{v.details}}</li>
+                <li>Catagory Name:{{v.catagoryid.catagory}}</li>
+                <div class="btn-wrap">
+                <a href="{% url 'addtocart' v.id %}" class="btn-buy">Add to Cart</a>
+              </div>
+              </ul>
+              
+            </div>
+
+          </div>
+	
+  {% endfor %}        
+          
+	<h1><a href="{% url 'viewcart' %}">View Cart</a></h1>
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+{% if messages %}
+	{% for msg in messages %}
+		<script>
+			alert('{{msg}}')
+		</script>
+	{% endfor %}
+{% endif %}
+{% endblock %}

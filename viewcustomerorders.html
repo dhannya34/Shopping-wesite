@@ -1,0 +1,80 @@
+{% extends 'base4.html' %}
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/this-is-same-shoes.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>View Customer Orders</h2>
+          <p>View customer orders to accept,reject the orders and also to teack the order</p>
+        </div>
+
+        <div class="row">
+	{% for v in data %}
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+              <h3>{{v.shippingaddress}}</h3>
+              <h4>Quantity:{{v.quantity}}</h4>
+              <ul>
+                <li>Total Price:{{v.totalprice}}</li>
+                <li>{{v.date}}</li>
+                <li>{{v.time}}</li>
+                <li>{{v.status}}</li>
+                <li>{{v.productid.productname}}</li>
+		<li>{{v.userid.name}}</li>
+		{% if v.status != 'cancelled' and v.status != 'Delivered' and v.status != 'Cancellation Successfull' %}
+					 
+					<h1><a href="{% url 'accept' v.id %}">Accept</a></h1>
+					<h2><a href="{% url 'rejecto' v.id %}">Reject</a></h2>
+				{% if v.status == 'cancelled' %}
+					<h3><a href="{% url 'cnfmcncltn' v.id %}">Confirm Cancellation</a></h3>
+				
+					
+				{% endif %}
+				
+				{% endif %}
+				{% if v.status == 'Accepted' %}
+					<h4><a href="{% url 'trackorder' v.id %}">Track Order</a></h4>
+				{% endif %}
+              </ul>
+            </div>
+          </div>
+	{% endfor %}
+          
+
+          
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+{% endblock %}	

@@ -1,0 +1,67 @@
+{% extends 'base4.html' %}
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+<!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/this-is-same-shoes.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>View Users</h2>
+          <p>View users to approve and reject them</p>
+        </div>
+
+        <div class="row">
+	{% for v in data %}
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+              <h3>{{v.name}}</h3>
+              <h4>{{v.gender}}</h4>
+              <ul>
+                <li>{{v.dob}}</li>
+                <li>{{v.country}}</li>
+                <li>{{v.address}}</li>
+                <li>{{v.phone}}</li>
+                <li>{{v.username}}</li>
+		<li>{{v.file}}</li>
+		<li><a href="{% url 'approve' v.id %}">Approve</a></li>
+		<li><a href="{% url 'reject' v.id %}">Reject</a></li>
+              </ul>
+              
+            </div>
+          </div>
+
+         {% endfor %} 
+
+          
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+		
+{% endblock %}
+	

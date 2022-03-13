@@ -1,0 +1,52 @@
+{% extends 'base4.html' %}
+{% block content %}
+
+
+
+
+
+
+
+<!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/this-is-same-shoes.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Tracking Details</h2>
+          <p>Consists of tacking details of the product</p>
+        </div>
+
+        <div class="row">
+	{% for v in data %}
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100" style="margin:0 auto">
+            <div class="box">
+              
+              
+             
+                <h1>Details of product:{{v.details}}</h1>
+                <h2>{{v.date}}</h2>
+                <h3>{{v.time}}</h3>
+                <h4>{{v.orderid}}</h4>
+                
+              
+            </div>
+          </div>
+
+        
+
+    {% endfor %}      
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+
+		
+{% endblock %}				

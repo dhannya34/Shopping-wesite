@@ -1,0 +1,86 @@
+{% extends 'base12.html' %}
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/this-is-same-shoes.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>View Customer Orders</h2>
+          <p>View customer orders to accept,reject the orders and also to teack the order</p>
+        </div>
+
+        <div class="row">
+	{% for v in data %}
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+              <h3>{{v.shippingaddress}}</h3>
+              <h3>Quantity:{{v.quantity}}</h3>
+              <ul>
+                <li>Total Price:{{v.totalprice}}</li>
+                <li>{{v.date}}</li>
+                <li>{{v.time}}</li>
+                <li>{{v.status}}</li>
+                <h4>{{v.productid.productname}}</h4>
+		<h4>{{v.userid.name}}</h4>
+		{% if v.status != 'cancelled' and v.status != 'Delivered' and v.status != 'Cancellation Successfull' %}
+					<div class="text-center"> 
+					<h1><a href="{% url 'accept' v.id %}" class="btn-buy">Accept</a></h1>
+				
+					<h2><a href="{% url 'rejecto' v.id %}" class="btn-buy">Reject</a></h2>
+					</div>
+				{% if v.status == 'cancelled' %}
+				<div class="text-center">
+					<h3><a href="{% url 'cnfmcncltn' v.id %}" class="btn-buy">Confirm Cancellation</a></h3>
+				</div>
+					
+				{% endif %}
+				
+				{% endif %}
+				{% if v.status == 'Accepted' %}
+					<div class="text-center">
+					<h4><a href="{% url 'trackorder' v.id %}" class="btn-buy">Track Order</a></h4>
+					</div>
+				{% endif %}
+		
+              </ul>
+            </div>
+          </div>
+	{% endfor %}
+          
+
+          
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+{% endblock %}	

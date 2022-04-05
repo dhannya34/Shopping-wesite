@@ -1,0 +1,89 @@
+{% extends 'base12.html' %}
+{% block content %}
+<script type="text/javascript">
+	function validation()
+	{
+		var flag=0
+		for(var i=0;i<checkbox.length;i++)
+		{
+			if(checkbox[i].checked == true)
+			flag=1
+		}
+		if (flag == 0)
+		{
+			alert("Item not selected")
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+		}
+	</script>
+
+
+
+
+
+
+
+
+
+
+<!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing section-bg" style="background-image:url('/static/Techie/Techie/assets/img/this-is-same-shoes.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>View Cart</h2>
+          <p>View the cart inorder to purchase the item</p>
+        </div>
+
+
+
+<form method="post" action="{% url 'viewcartAction' %}">
+		{% csrf_token %}
+        <div class="row">
+	{% for v in data %}
+          <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="100" style="margin-left:186px">
+            <div class="box">
+              <h3>Product ID:{{v.productid.id}}</h3>
+              <h4>User ID:{{v.userid.id}}</h4>
+              <ul>
+                <li><img src="{{v.productid.file.url}}" height="100px" width="100px" alt="no pic"></li>
+                <li>{{v.shippingaddress}}</li>
+                <li>{{v.contactno}}</li>
+                <li>Quantity:{{v.quantity}}</li>
+                <li>Total Price:{{v.totalprice}}</li>
+		<li><input type="checkbox" name="checkbox" value="{{v.id}}" id="checkbox"></li>
+		<div class="text-center">
+              	<li><a href="{% url 'deletep' v.id %}" class="btn-buy">Delete</a></li>
+		</div>
+		</ul>
+              
+            </div>
+          </div>
+	{% endfor %}
+	<div class="text-center">
+       <h1><input type="submit" value="Place Order" onclick="return validation()" class="btn-buy"></h1>
+	</div>
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+	
+		
+	
+{% if messages %}
+	{% for msg in messages %}
+		<script>
+			alert('{{msg}}')
+		</script>
+	{% endfor %}
+{% endif %}	
+{% endblock %}

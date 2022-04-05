@@ -1,0 +1,14 @@
+{% extends 'base8.html' %}
+{% block content %}		
+		{% for v in data %}
+		<h3>Welcome {{v.username}}</h3>
+		{% endfor %}
+		
+			<ul>
+			<li><a href="{%url 'Adminhome' %}">Home</a></li>
+			<li><a href="{% url 'ViewAllusers' %}">View All users</a></li>
+			<li><a href="{% url 'AddCatagory' %}">Add Catagory</a></li>
+			<li><a href="{% url 'logout' %}">Logout</a></li>
+			</ul>	 
+		
+{% endblock %}

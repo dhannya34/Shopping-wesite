@@ -1,0 +1,18 @@
+{% extends 'base3.html' %}
+{% block content %}
+		
+		
+			{% for v in data %}
+			<h3>Welcome {{v.username}}</h3>
+			{% endfor %}
+		<ul>	
+			<a href="{% url 'edit' %}"></a>
+			<a href="{% url 'viewuserProducts'%}"></a>
+			<a href="{% url 'vieworders' %}"></a>
+			<a href="{% url 'searchproducts' %}"></a>
+			<a href="{% url 'searchprobycatandpri' %}"></a>
+			<a href="{% url 'logout' %}"></a>
+		</ul> 
+		
+	
+{% endblock %}

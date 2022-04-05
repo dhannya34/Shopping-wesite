@@ -1,0 +1,144 @@
+{% extends 'base11.html' %}
+{% block content %}
+<script type="text/javascript">
+	function validation()
+	{
+
+	var productname=document.getElementById("productname")
+	var price=document.getElementById("price")
+	var details=document.getElementById("details")
+	var stock=document.getElementById("stock")
+	var catagory=document.getElementById("catagory")
+	var file=document.getElementById("file")
+	if(productname.value.length == 0)
+	{
+		alert("Enter product name")
+		return false;
+	}
+	if(price.value.length == 0)
+	{
+		alert("Enter price")
+		return false;
+	}
+	if(details.value.length == 0)
+	{
+		alert("Enter details")
+		return false;
+	}
+	if(stock.value.length == 0)
+	{
+		alert("Enter stock")
+		return false;
+	}
+	if(catagory.value.length == 0)
+	{
+		alert("Enter catagory")
+		return false;
+	}
+	if(file.value.length == 0)
+	{
+		alert("Upload file")
+		return false;
+	}
+	else
+	{
+		return true;	
+	}
+	}
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg" style="width:60%;margin:0 auto;color:white;background-color:rgba(0,0,0,0.5)">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+	<h2>Edit Product Details</h2>
+          
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          
+	
+          <div class="col-lg-6">
+            <form method="post" action="{% url 'updateeditp' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+		
+              <div class="row">
+		{% for v in data %}
+                <div class="form-group mt-3"
+                  <input type="text" name="productname" class="form-control" id="productname" value="{{v.productname}}"  required style="width:200%;margin-left:186px">
+                </div>
+                
+              
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="price" id="price" value="{{v.price}}" required style="width:100%;margin-left:186px">
+              </div>
+		<div class="form-group mt-3">
+                <textarea class="form-control" name="details" rows="10" cols="20" id="details" required style="width:100%;margin-left:186px">{{v.details}}</textarea>
+              </div>
+              
+		<div class="form-group mt-3">
+                <input type="text" class="form-control" name="stock" id="stock" value="{{v.stock}}" required style="width:100%;margin-left:186px">
+              </div>
+		<div class="form-group mt-3">
+			<select name="catagory" id="catagory" style="width:100%;margin-left:186px">
+					<option value="{{v.catagoryid.id}}">{{v.catagoryid.catagory}}</option>
+					<option value="">---select---</option>
+					{% for k in catagory %}
+					<option value="{{k.id}}">{{k.catagory}}</option>
+					{% endfor %}
+					</select>
+		</div>
+
+                
+		<div class="form-group mt-3">
+                <img src="{{v.file.url}}" height="100px" width="100px" alt="no pic" style="width:50%;margin-left:260px">
+              </div>
+		
+		<div class="form-group mt-3">
+                <input type="text" class="form-control" name="file" id="file" placeholder="file" required style="width:100%;margin-left:186px">
+              </div>		
+		
+              <div class="form-group mt-3">
+              <div class="text-center"><button type="submit" onclick="return validation()" style="margin-left:315px">Update</button></div>
+		</div>
+            </form>
+          </div>
+
+        </div>
+</div>
+{% endfor %}
+      </div>
+    </section><!-- End Contact Section -->
+
+
+
+
+
+
+
+
+	
+	
+		
+
+				
+{% endblock %}				

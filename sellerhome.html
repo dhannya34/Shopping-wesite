@@ -1,0 +1,20 @@
+{% extends 'base6.html' %}
+{% block content %}
+		 
+		
+		<a href="{% url 'addproduct'%}"></a>
+		<a href="{% url 'viewProducts' %}"></a>
+		<a href="{% url 'updateProfile' %}"></a>
+		<a href="{% url 'viewcustomerorders' %}"></a>
+		<a href="{% url 'logout' %}"></a></li>
+		
+	
+{% if messages %}
+	{% for msg in messages %}
+		<script>
+			alert('{{msg}}')
+		</script>
+	{% endfor %}
+{% endif %}
+
+{% endblock %}
